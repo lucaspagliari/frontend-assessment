@@ -21,9 +21,16 @@ O seu objetivo é criar um webapp para facilitar a vida desse garçom.
 
 ## Referência visual
 
-### Desktop
+Os designs a seguir podem ser utilizados como referência para o seu desenvolvimento.
+A responsividade mobile fica a seu cargo.
+Sinta-se livre para alterar o design da forma como preferir. As imagens a seguir são apenas um esboço:
 
-### Mobile
+
+![Mockup Mesas](/Mesas.png)
+
+![Mockup Pedido](/Pedido.png)
+
+![Mockup Pagamento](/Pagamento.png)
 
 ## Importante
 - Serão avaliadas clareza e organização do código.
