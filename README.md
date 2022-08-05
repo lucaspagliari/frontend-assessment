@@ -17,7 +17,7 @@ O seu objetivo é criar um webapp para facilitar a vida desse garçom.
 - Indicamos também o uso de algum pré-processador de CSS (SCSS, SASS, Stylus, etc).
 - Não é recomandada a utilização de frameworks para o design (bootstrap, tailwind, materialize, foundation, etc). A ideia é avaliar seus conhecimentos de css puro.
 - O webapp deve ser responsivo.
-- Desafio opcional: Implementar a visualização dos valores convertidos para Dolar e Euro utilizando nossa API GraphQL de conversão de moedas.
+- Desafio opcional: Implementar a visualização dos valores convertidos para Dolar e Euro utilizando nossa [API GraphQL de conversão de moedas](https://gitlab.com/convenia/assessments/currency-conversion).
 
 ## Referência visual
 
@@ -40,3 +40,7 @@ Sinta-se livre para alterar o design da forma como preferir. As imagens a seguir
 - Você tem duas semanas para realizar a avaliação.
 
 Divirta-se, seja criativo(a) e mostre-nos do que é capaz!
+
+### Aguardamos seu Merge Request
+
+Convenia :purple_heart:
