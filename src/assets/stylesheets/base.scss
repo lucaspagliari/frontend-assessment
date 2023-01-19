@@ -1,0 +1,35 @@
+@import './variables/colors.scss';
+@import './variables/elevation.scss';
+
+:root {
+  --color-background: var(--color-gray-2);
+  --color-background-2: var(--color-white);
+  --color-text: var(--color-blue-dark);
+  --color-border: var(--color-gray-2);
+
+  // @media (prefers-color-scheme: dark) {
+  // --color-background: var(--color-black);
+  // }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  position: relative;
+  font-weight: normal;
+}
+
+#app {
+  min-height: 100vh;
+  width: 100%;
+  font-family: 'Roboto';
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  font-size: 2rem;
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
