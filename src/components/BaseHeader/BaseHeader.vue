@@ -1,9 +1,13 @@
 <template>
-  <header class="v-header">
+  <header class="base-header">
     <h3>Olá, {{ username }}!</h3>
-    <div>
-      {{ dateAndTime }}
+    <div class="base-header--time">
+      <p>
+        {{ dateAndTime }}
+      </p>
     </div>
+
+    <ThemeButton />
   </header>
 </template>
 <script lang="ts">
@@ -21,15 +25,21 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-.v-header {
-  display: flex;
+.base-header {
+  display: grid;
   height: 5rem;
-  justify-content: start;
+  grid-template: auto / 30% auto 30%;
+
   align-items: center;
   padding: 0 5rem;
   gap: 1rem;
   background-color: var(--color-background-2);
-  border-bottom: 2px var(--color-border) solid;
-  box-shadow: var(--shadow);
+  box-shadow: var(--color-shadow);
+
+  &--time {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 </style>

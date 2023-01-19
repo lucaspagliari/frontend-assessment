@@ -46,3 +46,12 @@ Divirta-se, seja criativo(a) e mostre-nos do que é capaz!
 ### Aguardamos seu Merge Request
 
 Convenia :purple_heart:
+
+---
+
+## TODO
+
+- [ ] Correct any inconsistency with css
+- [ ] apply unit test
+- [ ] use dinero.js (?)
+- [ ] lowercase for folders pascalcase for components
