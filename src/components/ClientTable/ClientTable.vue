@@ -28,7 +28,7 @@
       class="options"
       icon
       color="green"
-      @click="$emit('add')"
+      @click="$emit('order')"
       >➕</base-btn
     >
   </div>

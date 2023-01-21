@@ -42,8 +42,9 @@ export default {
   border-radius: 8px;
   font-size: 1rem;
 
-  // TODO: Maybe add a conditional to define color based on background color
+  cursor: pointer;
 
+  // TODO: Maybe add a conditional to define color based on background color
   &-icon {
     width: 30px;
     height: 30px;

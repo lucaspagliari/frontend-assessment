@@ -1,5 +1,3 @@
-<script setup lang="ts"></script>
-
 <template>
   <div class="home">
     <div class="home-grid">
@@ -7,30 +5,33 @@
         v-for="i in 16"
         :key="i"
       >
-        <ClientTable :data="{ index: i, total: i % 2 }" />
-        <!-- <base-table>
-          <template #top> {{ i }}</template>
-          <template #default>Mesa {{ i }}</template>
-          <template #bottom> teste</template>
-        </base-table> -->
+        <ClientTable
+          :data="{ index: i, total: i % 2 }"
+          @order="openModal('order')"
+        />
       </template>
 
-      <div class="test">
-        <base-btn
-          icon
-          class="first"
-          >1</base-btn
-        >
-        <base-btn
-          icon
-          class="second"
-          >2</base-btn
-        >
-      </div>
+      <OrderModal
+        :active="isModalActive('order')"
+        @close="closeModal"
+      />
     </div>
   </div>
 </template>
+<script lang="ts">
+import { useModal } from '@/composable/useModal'
 
+export default {
+  setup() {
+    const { openModal, closeModal, isModalActive } = useModal()
+    return {
+      openModal,
+      closeModal,
+      isModalActive,
+    }
+  },
+}
+</script>
 <style scoped lang="scss">
 .home {
   display: flex;
