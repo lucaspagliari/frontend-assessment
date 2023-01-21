@@ -57,7 +57,7 @@ export default {
     padding: 1rem;
     border-radius: 0.5rem;
     box-shadow: var(--color-shadow);
-    background-color: var(--color-background);
+    background-color: var(--color-background-2);
   }
 }
 

@@ -8,15 +8,19 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     BaseBtn: typeof import('./src/components/BaseBtn/BaseBtn.vue')['default']
+    BaseCard: typeof import('./src/components/BaseCard/BaseCard.vue')['default']
     BaseComponent: typeof import('./src/components/BaseComponent.vue')['default']
+    BaseExpansiveCard: typeof import('./src/components/BaseCard/BaseExpansiveCard.vue')['default']
     BaseHeader: typeof import('./src/components/BaseHeader/BaseHeader.vue')['default']
+    BaseModal: typeof import('./src/components/BaseModal/BaseModal.vue')['default']
     BaseTable: typeof import('./src/components/BaseTable/BaseTable.vue')['default']
     Btn: typeof import('./src/components/buttons/Btn.vue')['default']
     ClientTable: typeof import('./src/components/ClientTable/ClientTable.vue')['default']
+    ExpandTransition: typeof import('./src/components/ExpandTransition.vue')['default']
+    MainHeader: typeof import('./src/components/MainHeader/MainHeader.vue')['default']
+    OrderModal: typeof import('./src/components/OrderModal/OrderModal.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    ThemBtn: typeof import('./src/components/buttons/ThemBtn.vue')['default']
     ThemeBtn: typeof import('./src/components/buttons/ThemeBtn.vue')['default']
-    ThemeButton: typeof import('./src/components/buttons/ThemeButton.vue')['default']
   }
 }

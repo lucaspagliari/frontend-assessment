@@ -8,7 +8,7 @@
       <base-btn
         :class="['toggle', { 'toggle-open': open }]"
         icon
-        color="background"
+        color="transparent"
       >
         ⬇️
       </base-btn>
@@ -39,7 +39,7 @@ export default {
 .base-card {
   // padding: 0.5rem;
   border-radius: 0.5rem;
-  background-color: var(--color-background);
+  // background-color: var(--color-background);
 
   .title {
     display: flex;
