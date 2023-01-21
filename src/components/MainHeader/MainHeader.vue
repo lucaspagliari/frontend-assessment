@@ -1,9 +1,9 @@
 <template>
-  <header class="base-header">
-    <h3>Olá, {{ username }}!</h3>
+  <header class="main-header">
+    <!-- <h3>Olá, {{ username }}!</h3> -->
     <div class="base-header--time">
       <p>
-        {{ dateAndTime }}
+        <!-- {{ dateAndTime }} -->
       </p>
     </div>
 
@@ -31,9 +31,10 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-.base-header {
+.main-header {
+  z-index: 5;
   display: grid;
-  height: 5rem;
+  height: 3rem;
   grid-template: auto / 30% auto 30%;
 
   align-items: center;

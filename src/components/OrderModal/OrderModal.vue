@@ -85,6 +85,7 @@ export default {
       border-bottom: 1px dashed var(--color-border);
 
       text-align: center;
+
       .left {
         text-align: left;
       }

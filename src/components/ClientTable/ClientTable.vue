@@ -17,7 +17,6 @@
     </base-table>
 
     <!-- TODO: Add icon lib  -->
-
     <base-btn
       class="options"
       icon

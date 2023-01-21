@@ -25,9 +25,12 @@ body.dark {
   position: relative;
   font-weight: normal;
 }
+body {
+  overflow: hidden;
+}
 
 #app {
-  min-height: 100vh;
+  max-height: 100vh;
   width: 100%;
   font-family: 'Roboto';
   text-rendering: optimizeLegibility;

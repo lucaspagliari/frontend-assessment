@@ -11,9 +11,14 @@ import { RouterView } from 'vue-router'
 </template>
 
 <style scoped lang="scss">
+.app-container-home {
+  display: grid;
+  grid-template: 3rem calc(100% - 3rem) / 100%;
+  overflow: hidden;
+}
 .main-view {
-  display: block;
-  height: calc(100vh - 5rem);
-  padding: 1rem;
+  overflow-y: auto;
+  height: calc(100vh - 3rem);
+  width: 100%;
 }
 </style>
