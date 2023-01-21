@@ -7,12 +7,16 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    BaseBtn: typeof import('./src/components/BaseBtn/BaseBtn.vue')['default']
     BaseComponent: typeof import('./src/components/BaseComponent.vue')['default']
     BaseHeader: typeof import('./src/components/BaseHeader/BaseHeader.vue')['default']
     BaseTable: typeof import('./src/components/BaseTable/BaseTable.vue')['default']
     Btn: typeof import('./src/components/buttons/Btn.vue')['default']
+    ClientTable: typeof import('./src/components/ClientTable/ClientTable.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    ThemBtn: typeof import('./src/components/buttons/ThemBtn.vue')['default']
+    ThemeBtn: typeof import('./src/components/buttons/ThemeBtn.vue')['default']
     ThemeButton: typeof import('./src/components/buttons/ThemeButton.vue')['default']
   }
 }

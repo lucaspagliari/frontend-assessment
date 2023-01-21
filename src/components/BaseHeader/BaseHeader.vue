@@ -7,14 +7,20 @@
       </p>
     </div>
 
-    <ThemeButton />
+    <base-btn @click="toggle">
+      <p>dark</p>
+    </base-btn>
   </header>
 </template>
 <script lang="ts">
+import useDarkMode from '@/composable/useDarkMode'
+
 export default {
   setup() {
+    const { toggle } = useDarkMode()
     return {
       username: 'John Doe',
+      toggle,
     }
   },
   computed: {

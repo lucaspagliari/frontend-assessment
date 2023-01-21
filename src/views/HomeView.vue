@@ -1,6 +1,4 @@
-<script setup lang="ts">
-import BaseTable from '@/components/BaseTable/BaseTable.vue'
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div class="home">
@@ -9,12 +7,26 @@ import BaseTable from '@/components/BaseTable/BaseTable.vue'
         v-for="i in 16"
         :key="i"
       >
-        <base-table>
+        <ClientTable :data="{ index: i, total: i % 2 }" />
+        <!-- <base-table>
           <template #top> {{ i }}</template>
           <template #default>Mesa {{ i }}</template>
           <template #bottom> teste</template>
-        </base-table>
+        </base-table> -->
       </template>
+
+      <div class="test">
+        <base-btn
+          icon
+          class="first"
+          >1</base-btn
+        >
+        <base-btn
+          icon
+          class="second"
+          >2</base-btn
+        >
+      </div>
     </div>
   </div>
 </template>

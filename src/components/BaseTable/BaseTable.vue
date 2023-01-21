@@ -47,12 +47,6 @@ export default {
 
   transition: 100ms;
 
-  &:hover {
-    border: 2px solid var(--color-violet);
-    // background-color: var(--color-violet);
-    // color: white;
-  }
-
   .title {
     display: inline;
     font-size: large;

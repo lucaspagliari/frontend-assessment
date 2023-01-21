@@ -1,7 +1,7 @@
 <template>
   <button
     :class="['btn', { 'btn-icon': icon }]"
-    :style="btnColor"
+    :style="btnStyle"
   >
     <slot name="default" />
   </button>
@@ -17,11 +17,14 @@ export default {
     color: {
       type: String,
       default: 'violet',
+      validator(value) {
+        return !!value
+      },
     },
   },
 
   computed: {
-    btnColor() {
+    btnStyle() {
       return {
         backgroundColor: `var(--color-${this.color})`,
       }
@@ -36,8 +39,10 @@ export default {
   justify-content: center;
   width: fit-content;
   padding: 0.5rem;
-  border: solid 1px var(--color-border);
   border-radius: 8px;
+  font-size: 1rem;
+
+  // TODO: Maybe add a conditional to define color based on background color
 
   &-icon {
     width: 30px;
