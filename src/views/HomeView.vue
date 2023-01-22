@@ -1,16 +1,13 @@
 <template>
   <div class="home-view">
     <div class="content">
-      <template
-        v-for="i in 16"
-        :key="i"
-      >
-        <ClientTable
-          class="client-table"
-          :data="{ index: i, total: i % 2 }"
-          @order="openModal('order')"
-        />
-      </template>
+      <ClientTable
+        v-for="table in tables"
+        :key="table.index"
+        class="client-table"
+        :data="table"
+        @order="openModal('order')"
+      />
 
       <OrderModal
         :active="isModalActive('order')"
@@ -20,15 +17,20 @@
   </div>
 </template>
 <script lang="ts">
-import { useModal } from '@/composable/useModal'
+import { useModal } from '@/composable'
+import { useTablesStore } from '@/stores/tables'
 
 export default {
   setup() {
     const { openModal, closeModal, isModalActive } = useModal()
+
+    const { tables } = useTablesStore()
+
     return {
       openModal,
       closeModal,
       isModalActive,
+      tables,
     }
   },
 }

@@ -30,7 +30,7 @@ export default {
       }
       count.value += n
 
-      emit('update:modelValue', count.value)
+      emit(n === 1 ? 'add' : 'subtract', count.value)
     }
 
     return {

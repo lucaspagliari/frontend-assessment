@@ -13,7 +13,7 @@
   </header>
 </template>
 <script lang="ts">
-import useDarkMode from '@/composable/useDarkMode'
+import { useDarkMode } from '@/composable'
 
 export default {
   setup() {

@@ -14,65 +14,60 @@
       </base-btn>
     </div>
 
-    <!-- TODO V-FOR through each category -->
     <base-expansive-card
-      v-for="i in 3"
-      :key="i"
+      v-for="category in categories"
+      :key="category"
       class="card"
     >
-      <template #default> Bebidas </template>
+      <template #default> {{ category }} </template>
       <template #content>
         <div
-          v-for="(item, index) in data"
-          :key="item.name + index"
-          class="item"
+          v-for="(product, index) in filterProduct(category)"
+          :key="product.name + index"
+          class="product"
         >
-          <p class="name">{{ item.name }}</p>
-          <p class="price">{{ item.price }}</p>
-          <p class="quantity">
-            <BaseCounter v-model="item.quantity" />
-          </p>
+          <p class="name">{{ product.name }}</p>
+          <p class="price">{{ product.price }}</p>
+          <div class="quantity">
+            <BaseCounter
+              @add="addProduct(product)"
+              @subtract="removeProduct(product)"
+            />
+          </div>
         </div>
       </template>
     </base-expansive-card>
 
     <div class="table-info">
       <p>Mesa {{ 1 }}</p>
-      <p>Total {{ data[0].quantity }}</p>
+      <p>{{ total }}</p>
     </div>
   </base-modal>
 </template>
 
 <script lang="ts">
-import { reactive } from 'vue'
+import { useOrderProduct } from '@/composable'
 
 export default {
   setup(_, { emit }) {
-    const data = reactive([
-      {
-        name: 'Coquinha Gelada',
-        price: 'R$8,00',
-        quantity: 0,
-      },
-      {
-        name: 'Lipton Limão',
-        price: 'R$9,00',
-        quantity: 0,
-      },
-      {
-        name: 'Suco',
-        price: 'R$8,00',
-        quantity: 0,
-      },
-    ])
+    const { products, total, categories, addProduct, removeProduct } =
+      useOrderProduct()
 
     const handleClose = () => {
       emit('close')
     }
 
+    const filterProduct = (category: string) => {
+      return products.filter((e) => e.category === category)
+    }
+
     return {
-      data,
+      total,
+      categories,
+      filterProduct,
       handleClose,
+      addProduct,
+      removeProduct,
     }
   },
 }
@@ -81,6 +76,9 @@ export default {
 @import '@/assets/stylesheets/mixins/breakpoints.scss';
 
 .order-modal {
+  max-height: 100vh;
+  overflow-y: auto;
+
   .title {
     display: flex;
     justify-content: space-between;
@@ -90,7 +88,7 @@ export default {
     font-size: 1.125rem;
     margin: 1rem 0;
 
-    .item {
+    .product {
       display: grid;
       padding: 0.25rem;
       border-bottom: 1px dashed var(--color-border);
@@ -99,39 +97,24 @@ export default {
 
       @include breakpoint('small') {
         grid-template: auto / 2fr 1fr 1fr;
-        padding: 1rem;
+        padding: 0.5rem;
       }
 
       .quantity {
-        grid-column-start: 1;
-        grid-column-end: 3;
-        text-align: center;
+        grid-area: 1 / 2 / 3 / 2;
+        margin: auto;
+
         @include breakpoint('small') {
-          grid-column-start: none;
-          grid-column-end: none;
-          text-align: right;
+          grid-area: 1 / 3 / 1 / 4;
         }
       }
 
       .price {
-        text-align: right;
+        text-align: left;
         @include breakpoint('small') {
           text-align: center;
         }
       }
-
-      // .name {
-      //   grid-area: name;
-      //   text-align: left;
-      // }
-      // .quantity {
-      //   grid-area: quantity;
-      //   text-align: right;
-      // }
-      // .price {
-      //   grid-area: price;
-      //   text-align: center;
-      // }
     }
   }
 

@@ -25,5 +25,3 @@ export const useDarkMode = (): useDarkModeReturn => {
     toggle,
   }
 }
-
-export default useDarkMode
