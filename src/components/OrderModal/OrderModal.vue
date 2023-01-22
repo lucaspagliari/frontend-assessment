@@ -29,35 +29,42 @@
         >
           <p class="name">{{ item.name }}</p>
           <p class="price">{{ item.price }}</p>
-          <p class="quantity">- 1 +</p>
+          <p class="quantity">
+            <BaseCounter v-model="item.quantity" />
+          </p>
         </div>
       </template>
     </base-expansive-card>
 
     <div class="table-info">
       <p>Mesa {{ 1 }}</p>
-      <p>Total {{ 10 }}</p>
+      <p>Total {{ data[0].quantity }}</p>
     </div>
   </base-modal>
 </template>
 
 <script lang="ts">
+import { reactive } from 'vue'
+
 export default {
   setup(_, { emit }) {
-    const data = [
+    const data = reactive([
       {
         name: 'Coquinha Gelada',
         price: 'R$8,00',
+        quantity: 0,
       },
       {
         name: 'Lipton Limão',
         price: 'R$9,00',
+        quantity: 0,
       },
       {
         name: 'Suco',
         price: 'R$8,00',
+        quantity: 0,
       },
-    ]
+    ])
 
     const handleClose = () => {
       emit('close')
@@ -80,7 +87,7 @@ export default {
   }
 
   .card {
-    font-size: 1.25rem;
+    font-size: 1.125rem;
     margin: 1rem 0;
 
     .item {

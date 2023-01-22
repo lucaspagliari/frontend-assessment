@@ -38,7 +38,7 @@ export default {
   align-items: center;
   justify-content: center;
   width: fit-content;
-  padding: 0.5rem;
+  padding: 0.35rem;
   border-radius: 8px;
   font-size: 1rem;
 
