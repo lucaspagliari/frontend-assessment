@@ -1,9 +1,10 @@
 <template>
   <base-modal
     class="order-modal"
-    :width="400"
+    :width="500"
+    :minWidth="300"
   >
-    <div class="header">
+    <div class="title">
       <h2>Novo Pedido</h2>
       <base-btn
         icon
@@ -14,22 +15,26 @@
     </div>
 
     <!-- TODO V-FOR through each category -->
-    <base-expansive-card class="card">
+    <base-expansive-card
+      v-for="i in 3"
+      :key="i"
+      class="card"
+    >
       <template #default> Bebidas </template>
       <template #content>
         <div
-          v-for="item in data"
-          :key="item.name"
-          class="items"
+          v-for="(item, index) in data"
+          :key="item.name + index"
+          class="item"
         >
-          <p class="left">{{ item.name }}</p>
-          <p>{{ item.price }}</p>
-          <p>- 1 +</p>
+          <p class="name">{{ item.name }}</p>
+          <p class="price">{{ item.price }}</p>
+          <p class="quantity">- 1 +</p>
         </div>
       </template>
     </base-expansive-card>
 
-    <div class="client-info">
+    <div class="table-info">
       <p>Mesa {{ 1 }}</p>
       <p>Total {{ 10 }}</p>
     </div>
@@ -38,19 +43,19 @@
 
 <script lang="ts">
 export default {
-  setup(props, { emit }) {
+  setup(_, { emit }) {
     const data = [
       {
         name: 'Coquinha Gelada',
-        price: 8,
+        price: 'R$8,00',
       },
       {
         name: 'Lipton Limão',
-        price: 9,
+        price: 'R$9,00',
       },
       {
         name: 'Suco',
-        price: 8,
+        price: 'R$8,00',
       },
     ]
 
@@ -65,34 +70,65 @@ export default {
   },
 }
 </script>
-<style lang="scss">
+<style scoped lang="scss">
+@import '@/assets/stylesheets/mixins/breakpoints.scss';
+
 .order-modal {
-  .header {
+  .title {
     display: flex;
     justify-content: space-between;
-    color: var(--color-violet);
   }
 
   .card {
     font-size: 1.25rem;
     margin: 1rem 0;
 
-    .items {
+    .item {
       display: grid;
-      grid-template: auto / 2fr 1fr 1fr;
-      margin: 0.5rem 0;
       padding: 0.25rem;
       border-bottom: 1px dashed var(--color-border);
 
-      text-align: center;
+      grid-template: repeat(2, 1.25rem) / 2fr 1fr;
 
-      .left {
-        text-align: left;
+      @include breakpoint('small') {
+        grid-template: auto / 2fr 1fr 1fr;
+        padding: 1rem;
       }
+
+      .quantity {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        text-align: center;
+        @include breakpoint('small') {
+          grid-column-start: none;
+          grid-column-end: none;
+          text-align: right;
+        }
+      }
+
+      .price {
+        text-align: right;
+        @include breakpoint('small') {
+          text-align: center;
+        }
+      }
+
+      // .name {
+      //   grid-area: name;
+      //   text-align: left;
+      // }
+      // .quantity {
+      //   grid-area: quantity;
+      //   text-align: right;
+      // }
+      // .price {
+      //   grid-area: price;
+      //   text-align: center;
+      // }
     }
   }
 
-  .client-info {
+  .table-info {
     display: flex;
     justify-content: space-between;
   }

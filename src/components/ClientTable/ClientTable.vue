@@ -18,13 +18,13 @@
 
     <!-- TODO: Add icon lib  -->
     <base-btn
-      class="options"
+      class="btn-charge options"
       icon
       @click="$emit('charge')"
       >💲</base-btn
     >
     <base-btn
-      class="options"
+      class="btn-order options"
       icon
       color="green"
       @click="$emit('order')"
@@ -65,23 +65,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import '@/assets/stylesheets/mixins/breakpoints.scss';
+
 .client-table {
   position: relative;
-
-  .options {
-    position: absolute;
-    bottom: -15px;
-    left: calc(50% - 15px);
-
-    visibility: hidden;
-    opacity: 0;
-    transition: visibility 0s, all 120ms linear;
-
-    &:nth-child(2) {
-      bottom: calc(50% - 15px);
-      left: 85%;
-    }
-  }
 
   &:hover {
     .info {
@@ -90,6 +77,33 @@ export default {
     .options {
       visibility: visible;
       opacity: 1;
+    }
+  }
+
+  .options {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, all 120ms linear;
+  }
+
+  .btn-order {
+    bottom: 0.5rem;
+    left: 0.5rem;
+
+    @include breakpoint('small') {
+      bottom: -16px;
+      left: calc(50% - 16px);
+    }
+  }
+
+  .btn-charge {
+    bottom: 0.5rem;
+    right: 0.5rem;
+
+    @include breakpoint('small') {
+      bottom: calc(50% - 15px);
+      right: -16px;
     }
   }
 }

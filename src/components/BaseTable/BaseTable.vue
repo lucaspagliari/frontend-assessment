@@ -49,8 +49,9 @@ export default {
   cursor: default;
 
   .title {
-    display: inline;
-    height: 25px;
+    display: flex;
+    align-items: center;
+    height: 2rem;
     font-size: large;
   }
   .small {

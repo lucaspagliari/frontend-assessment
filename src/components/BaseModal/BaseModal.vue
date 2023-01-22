@@ -26,12 +26,16 @@ export default {
     width: {
       type: Number,
     },
+    minWidth: {
+      type: Number,
+    },
   },
 
   computed: {
     contentStyle() {
       return {
-        minWidth: this.width ? this.width + 'px' : 'auto',
+        minWidth: this.minWidth ? this.minWidth + 'px' : 'auto',
+        width: this.width ? this.width + 'px' : 'auto',
       }
     },
   },
@@ -54,10 +58,11 @@ export default {
   .content {
     position: relative;
     height: auto;
-    padding: 1rem;
+    padding: 0.75rem;
     border-radius: 0.5rem;
     box-shadow: var(--color-shadow);
     background-color: var(--color-background-2);
+    margin: 1rem;
   }
 }
 

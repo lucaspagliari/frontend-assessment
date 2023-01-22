@@ -46,8 +46,8 @@ export default {
 
   // TODO: Maybe add a conditional to define color based on background color
   &-icon {
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
   }
 }

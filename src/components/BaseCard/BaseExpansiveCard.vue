@@ -45,7 +45,8 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 2px solid var(--color-violet);
+    border-bottom: 2px solid var(--color-blue);
+    color: var(--color-blue);
   }
 
   .toggle {

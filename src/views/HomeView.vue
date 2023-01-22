@@ -68,6 +68,7 @@ export default {
 
     @include breakpoint('medium') {
       grid-template: repeat(4, 150px) / repeat(4, 150px);
+      gap: 2rem;
     }
   }
 }
