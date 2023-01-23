@@ -7,14 +7,32 @@ export interface Product {
   category: string
 }
 
+export interface ProductSummarized extends Product {
+  total: number
+  quantity: number
+}
+
+// todo maybe remove this
+export interface TimedProduct extends Product {
+  time: string | Date
+}
+
 export interface Order {
+  total: number
+  time: string | Date
   products: Product[]
+}
+
+export interface Payment {
   time: string
+  date: string
+  value: number
 }
 
 export interface Table {
-  index: number
+  id: number
   total: 0
   time: string | null
-  products: Product[]
+  orders: Order[]
+  payments: Payment[]
 }

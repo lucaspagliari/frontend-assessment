@@ -2,6 +2,7 @@
   <div class="base-card">
     <div
       class="title"
+      :style="titleColor"
       @click="toggleItems"
     >
       <slot name="default"></slot>
@@ -19,18 +20,31 @@
   </div>
 </template>
 <script lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 export default {
-  setup() {
+  props: {
+    color: {
+      type: String,
+      default: 'blue',
+    },
+  },
+  setup(props) {
     const open = ref(false)
     const toggleItems = () => {
       open.value = !open.value
     }
-
+    const titleColor = computed(() => {
+      const color = `var(--color-${props.color})`
+      return {
+        color,
+        borderColor: color,
+      }
+    })
     return {
       open,
       toggleItems,
+      titleColor,
     }
   },
 }
@@ -45,7 +59,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 2px solid var(--color-blue);
+    border-bottom: 2px solid;
     color: var(--color-blue);
   }
 

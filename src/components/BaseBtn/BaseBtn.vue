@@ -1,6 +1,6 @@
 <template>
   <button
-    :class="['btn', { 'btn-icon': icon }]"
+    :class="['btn', { 'btn-icon': icon }, { 'btn-outlined': outlined }]"
     :style="btnStyle"
   >
     <slot name="default" />
@@ -11,6 +11,10 @@
 export default {
   props: {
     icon: {
+      type: Boolean,
+      default: false,
+    },
+    outlined: {
       type: Boolean,
       default: false,
     },
@@ -25,9 +29,13 @@ export default {
 
   computed: {
     btnStyle() {
-      return {
-        backgroundColor: `var(--color-${this.color})`,
-      }
+      const color = `var(--color-${this.color})`
+
+      const style = !this.outlined
+        ? { backgroundColor: color }
+        : { borderColor: color, color }
+
+      return style
     },
   },
 }
@@ -41,9 +49,18 @@ export default {
   padding: 0.35rem;
   border-radius: 8px;
   font-size: 1rem;
+  color: var(--color-white);
 
   cursor: pointer;
 
+  transition: all 150ms linear;
+  &:hover {
+    filter: brightness(130%);
+  }
+  &-outlined {
+    box-sizing: border-box;
+    border: 2px solid;
+  }
   // TODO: Maybe add a conditional to define color based on background color
   &-icon {
     width: 32px;

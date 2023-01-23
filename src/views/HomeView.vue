@@ -3,10 +3,10 @@
     <div class="content">
       <ClientTable
         v-for="table in tables"
-        :key="table.index"
+        :key="table.id"
         class="client-table"
         :data="table"
-        @order="openModal('order')"
+        @order="clientOpenModal('order', table.id)"
       />
 
       <OrderModal
@@ -18,16 +18,21 @@
 </template>
 <script lang="ts">
 import { useModal } from '@/composable'
-import { useTablesStore } from '@/stores/tables'
+import { useClientTablesStore } from '@/stores/clientTables'
 
 export default {
   setup() {
     const { openModal, closeModal, isModalActive } = useModal()
 
-    const { tables } = useTablesStore()
+    const { tables, selectTable } = useClientTablesStore()
+
+    const clientOpenModal = (modal: string, tableId: number) => {
+      openModal(modal)
+      selectTable(tableId)
+    }
 
     return {
-      openModal,
+      clientOpenModal,
       closeModal,
       isModalActive,
       tables,

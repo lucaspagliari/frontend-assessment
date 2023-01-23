@@ -3,7 +3,7 @@
     <base-btn
       class="btn"
       icon
-      color="blue"
+      :color="color"
       @click="handleBtnClick(-1)"
       >-</base-btn
     >
@@ -11,7 +11,7 @@
     <base-btn
       class="btn"
       icon
-      color="blue"
+      :color="color"
       @click="handleBtnClick(+1)"
       >+</base-btn
     >
@@ -21,6 +21,12 @@
 import { ref } from 'vue'
 
 export default {
+  props: {
+    color: {
+      type: String,
+      default: 'violet',
+    },
+  },
   setup(_, { emit }) {
     const count = ref(0)
 

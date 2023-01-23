@@ -38,7 +38,7 @@ export default {
     data: {
       type: Object,
       default: {
-        index: 0,
+        id: 0,
         total: 0,
         products: [],
       },
@@ -50,7 +50,7 @@ export default {
       return !this.data.total
     },
     tableName() {
-      return `Mesa ${this.data.index + 1}`
+      return `Mesa ${this.data.id}`
     },
     tableTotal() {
       // TODO: Format to $$ (maybe use dinero.js)

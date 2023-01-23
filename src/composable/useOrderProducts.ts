@@ -1,19 +1,21 @@
 import { ref, reactive, type ReactiveEffect, type Ref } from 'vue'
 import { getProducts } from '@/services/products'
+import { useClientTablesStore } from '@/stores/clientTables'
 import type { Product } from '@/types'
 
 type ProductFn = (item: Product) => void
 
-interface useOrderProductReturn {
+interface useOrderProductsReturn {
   products: Product[]
   order: Product[]
   categories: string[]
   total: Ref<number>
   addProduct: ProductFn
   removeProduct: ProductFn
+  saveOrder: () => void
 }
 
-export const useOrderProduct = (): useOrderProductReturn => {
+export const useOrderProducts = (): useOrderProductsReturn => {
   const products = getProducts()
   const categories = [...new Set(products.map(({ category }) => category))]
   const order = reactive<Product[]>([])
@@ -40,6 +42,16 @@ export const useOrderProduct = (): useOrderProductReturn => {
     updateTotal()
   }
 
+  const { addOrderToTable } = useClientTablesStore()
+
+  const saveOrder = () => {
+    addOrderToTable({
+      time: new Date(),
+      products: order,
+      total: total.value,
+    })
+  }
+
   return {
     products,
     order,
@@ -47,5 +59,6 @@ export const useOrderProduct = (): useOrderProductReturn => {
     total,
     addProduct,
     removeProduct,
+    saveOrder,
   }
 }

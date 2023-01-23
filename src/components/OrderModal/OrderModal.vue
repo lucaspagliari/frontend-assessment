@@ -15,9 +15,10 @@
     </div>
 
     <base-expansive-card
-      v-for="category in categories"
+      v-for="(category, i) in categories"
       :key="category"
       class="card"
+      :color="colors[i]"
     >
       <template #default> {{ category }} </template>
       <template #content>
@@ -32,30 +33,53 @@
             <BaseCounter
               @add="addProduct(product)"
               @subtract="removeProduct(product)"
+              :color="colors[i]"
             />
           </div>
         </div>
       </template>
     </base-expansive-card>
 
-    <div class="table-info">
-      <p>Mesa {{ 1 }}</p>
-      <p>{{ total }}</p>
-    </div>
+    <footer class="footer">
+      <div class="table-info">
+        <p>Mesa {{ 1 }}</p>
+        <p>{{ total }}</p>
+      </div>
+      <div class="actions">
+        <base-btn
+          color="gray-dark"
+          outlined
+          @click="handleClose"
+          >cancelar</base-btn
+        >
+        <base-btn @click="handleOrder">finalizar</base-btn>
+      </div>
+    </footer>
   </base-modal>
 </template>
 
 <script lang="ts">
-import { useOrderProduct } from '@/composable'
+import { useOrderProducts, useProducts } from '@/composable'
 
 export default {
   setup(_, { emit }) {
-    const { products, total, categories, addProduct, removeProduct } =
-      useOrderProduct()
+    const {
+      products,
+      total,
+      categories,
+      addProduct,
+      removeProduct,
+      saveOrder,
+    } = useOrderProducts()
 
     const handleClose = () => {
       emit('close')
     }
+    const handleOrder = () => {
+      saveOrder()
+    }
+
+    const colors = ['violet', 'pink', 'violet', 'pink']
 
     const filterProduct = (category: string) => {
       return products.filter((e) => e.category === category)
@@ -64,10 +88,12 @@ export default {
     return {
       total,
       categories,
+      colors,
       filterProduct,
-      handleClose,
       addProduct,
       removeProduct,
+      handleClose,
+      handleOrder,
     }
   },
 }
@@ -118,9 +144,17 @@ export default {
     }
   }
 
-  .table-info {
-    display: flex;
-    justify-content: space-between;
+  .footer {
+    .table-info {
+      display: flex;
+      justify-content: space-between;
+      margin: 1rem 0;
+    }
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      justify-items: center;
+    }
   }
 }
 </style>

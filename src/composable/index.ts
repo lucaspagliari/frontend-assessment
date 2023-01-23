@@ -1,3 +1,4 @@
 export * from './useDarkMode'
 export * from './useModal'
-export * from './useOrderProduct'
+export * from './useOrderProducts'
+export * from './useProducts'
