@@ -11,6 +11,16 @@
         class="content"
         :style="contentStyle"
       >
+        <div class="title">
+          <slot name="title"></slot>
+          <base-btn
+            class="btn-close"
+            icon
+            color="transparent"
+            @click="$emit('close')"
+            >❌
+          </base-btn>
+        </div>
         <slot></slot>
       </div>
     </div>
@@ -54,6 +64,15 @@ export default {
   align-items: center;
   justify-content: center;
   background-color: #00000098;
+
+  .title {
+    display: grid;
+    grid-template-columns: 1fr min-content;
+
+    .btn-close {
+      grid-column: 2/ 3;
+    }
+  }
 
   .content {
     position: relative;

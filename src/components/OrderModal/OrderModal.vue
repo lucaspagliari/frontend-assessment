@@ -3,16 +3,11 @@
     class="order-modal"
     :width="500"
     :minWidth="300"
+    @close="handleClose"
   >
-    <div class="title">
+    <template #title>
       <h2>Novo Pedido</h2>
-      <base-btn
-        icon
-        color="transparent"
-        @click="handleClose"
-        >❌
-      </base-btn>
-    </div>
+    </template>
 
     <base-expansive-card
       v-for="(category, i) in categories"
@@ -40,7 +35,7 @@
       </template>
     </base-expansive-card>
 
-    <footer class="footer">
+    <footer class="modal-footer">
       <div class="table-info">
         <p>Mesa {{ table }}</p>
         <p>{{ total }}</p>
@@ -50,8 +45,8 @@
           color="gray-dark"
           outlined
           @click="handleClose"
-          >cancelar</base-btn
-        >
+          >cancelar
+        </base-btn>
         <base-btn @click="handleFinish">finalizar</base-btn>
       </div>
     </footer>
@@ -91,7 +86,7 @@ export default {
       return products.filter((e) => e.category === category)
     }
 
-    const colors = ['violet', 'pink', 'violet', 'pink']
+    const colors = ['violet', 'violet', 'violet', 'violet']
 
     return {
       total,
@@ -113,11 +108,6 @@ export default {
 .order-modal {
   max-height: 100vh;
   overflow-y: auto;
-
-  .title {
-    display: flex;
-    justify-content: space-between;
-  }
 
   .card {
     font-size: 1.125rem;
@@ -153,7 +143,7 @@ export default {
     }
   }
 
-  .footer {
+  .modal-footer {
     .table-info {
       display: flex;
       justify-content: space-between;

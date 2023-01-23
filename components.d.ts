@@ -10,6 +10,8 @@ declare module '@vue/runtime-core' {
     BaseBtn: typeof import('./src/components/BaseBtn/BaseBtn.vue')['default']
     BaseComponent: typeof import('./src/components/BaseComponent.vue')['default']
     BaseCounter: typeof import('./src/components/BaseCounter/BaseCounter.vue')['default']
+    BaseDataTable: typeof import('./src/components/BaseDataTable/BaseDataTable.vue')['default']
+    BaseDivider: typeof import('./src/components/BaseDivider/BaseDivider.vue')['default']
     BaseExpansiveCard: typeof import('./src/components/BaseCard/BaseExpansiveCard.vue')['default']
     BaseHeader: typeof import('./src/components/BaseHeader/BaseHeader.vue')['default']
     BaseModal: typeof import('./src/components/BaseModal/BaseModal.vue')['default']
@@ -19,6 +21,7 @@ declare module '@vue/runtime-core' {
     ExpandTransition: typeof import('./src/components/ExpandTransition.vue')['default']
     MainHeader: typeof import('./src/components/MainHeader/MainHeader.vue')['default']
     OrderModal: typeof import('./src/components/OrderModal/OrderModal.vue')['default']
+    PaymentModal: typeof import('./src/components/PaymentModal/PaymentModal.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

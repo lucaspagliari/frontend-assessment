@@ -7,10 +7,15 @@
         class="client-table"
         :data="table"
         @order="clientOpenModal('order', table.id)"
+        @charge="clientOpenModal('payment', table.id)"
       />
 
       <OrderModal
         :active="isModalActive('order')"
+        @close="closeModal"
+      />
+      <PaymentModal
+        :active="isModalActive('payment')"
         @close="closeModal"
       />
     </div>
