@@ -44,7 +44,6 @@ export default {
       },
     },
   },
-
   computed: {
     isEmpty() {
       return !this.data.total

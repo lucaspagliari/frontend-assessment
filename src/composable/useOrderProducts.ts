@@ -1,4 +1,4 @@
-import { ref, reactive, type ReactiveEffect, type Ref } from 'vue'
+import { ref, reactive, type ReactiveEffect, type Ref, onUnmounted } from 'vue'
 import { getProducts } from '@/services/products'
 import { useClientTablesStore } from '@/stores/clientTables'
 import type { Product } from '@/types'
@@ -12,7 +12,8 @@ interface useOrderProductsReturn {
   total: Ref<number>
   addProduct: ProductFn
   removeProduct: ProductFn
-  saveOrder: () => void
+  cancelOrder: () => void
+  finishOrder: () => void
 }
 
 export const useOrderProducts = (): useOrderProductsReturn => {
@@ -28,6 +29,8 @@ export const useOrderProducts = (): useOrderProductsReturn => {
   const updateTotal = () => {
     if (order.length) {
       total.value = order.reduce((a, b) => (a += b.price), 0)
+    } else {
+      total.value = 0
     }
   }
 
@@ -42,14 +45,21 @@ export const useOrderProducts = (): useOrderProductsReturn => {
     updateTotal()
   }
 
-  const { addOrderToTable } = useClientTablesStore()
+  const cancelOrder = () => {
+    order.splice(0, order.length)
+    total.value = 0
+  }
 
-  const saveOrder = () => {
-    addOrderToTable({
+  const store = useClientTablesStore()
+
+  const finishOrder = () => {
+    if (!order.length) return
+    store.addOrder({
       time: new Date(),
       products: order,
       total: total.value,
     })
+    cancelOrder()
   }
 
   return {
@@ -59,6 +69,7 @@ export const useOrderProducts = (): useOrderProductsReturn => {
     total,
     addProduct,
     removeProduct,
-    saveOrder,
+    cancelOrder,
+    finishOrder,
   }
 }

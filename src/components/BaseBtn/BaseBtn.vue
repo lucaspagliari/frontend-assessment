@@ -46,12 +46,14 @@ export default {
   align-items: center;
   justify-content: center;
   width: fit-content;
-  padding: 0.35rem;
+  padding: 0.35rem 0.5rem;
   border-radius: 8px;
   font-size: 1rem;
   color: var(--color-white);
 
   cursor: pointer;
+
+  text-transform: capitalize;
 
   transition: all 150ms linear;
   &:hover {

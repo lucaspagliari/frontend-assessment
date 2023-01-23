@@ -19,23 +19,24 @@
 <script lang="ts">
 import { useModal } from '@/composable'
 import { useClientTablesStore } from '@/stores/clientTables'
+import { computed } from 'vue'
 
 export default {
   setup() {
     const { openModal, closeModal, isModalActive } = useModal()
 
-    const { tables, selectTable } = useClientTablesStore()
+    const store = useClientTablesStore()
 
     const clientOpenModal = (modal: string, tableId: number) => {
       openModal(modal)
-      selectTable(tableId)
+      store.selectTable(tableId)
     }
 
     return {
       clientOpenModal,
+      tables: computed(() => store.tables),
       closeModal,
       isModalActive,
-      tables,
     }
   },
 }

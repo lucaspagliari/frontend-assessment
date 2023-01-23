@@ -42,7 +42,7 @@
 
     <footer class="footer">
       <div class="table-info">
-        <p>Mesa {{ 1 }}</p>
+        <p>Mesa {{ table }}</p>
         <p>{{ total }}</p>
       </div>
       <div class="actions">
@@ -52,14 +52,16 @@
           @click="handleClose"
           >cancelar</base-btn
         >
-        <base-btn @click="handleOrder">finalizar</base-btn>
+        <base-btn @click="handleFinish">finalizar</base-btn>
       </div>
     </footer>
   </base-modal>
 </template>
 
 <script lang="ts">
-import { useOrderProducts, useProducts } from '@/composable'
+import { useOrderProducts } from '@/composable'
+import { useClientTablesStore } from '@/stores/clientTables'
+import { computed } from 'vue'
 
 export default {
   setup(_, { emit }) {
@@ -69,31 +71,38 @@ export default {
       categories,
       addProduct,
       removeProduct,
-      saveOrder,
+      cancelOrder,
+      finishOrder,
     } = useOrderProducts()
 
+    const store = useClientTablesStore()
+    const table = computed(() => store.tableSelectedId)
+
     const handleClose = () => {
+      cancelOrder()
       emit('close')
     }
-    const handleOrder = () => {
-      saveOrder()
+    const handleFinish = () => {
+      finishOrder()
+      emit('close')
     }
-
-    const colors = ['violet', 'pink', 'violet', 'pink']
 
     const filterProduct = (category: string) => {
       return products.filter((e) => e.category === category)
     }
 
+    const colors = ['violet', 'pink', 'violet', 'pink']
+
     return {
       total,
       categories,
       colors,
+      table,
       filterProduct,
       addProduct,
       removeProduct,
       handleClose,
-      handleOrder,
+      handleFinish,
     }
   },
 }
