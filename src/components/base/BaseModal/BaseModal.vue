@@ -6,6 +6,7 @@
       tabindex="-1"
       aria-hidden="true"
       class="base-modal"
+      @keydown.esc="$emit('close')"
     >
       <div
         class="content"

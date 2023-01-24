@@ -7,15 +7,16 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    BaseBtn: typeof import('./src/components/BaseBtn/BaseBtn.vue')['default']
+    BaseBtn: typeof import('./src/components/base/BaseBtn/BaseBtn.vue')['default']
     BaseComponent: typeof import('./src/components/BaseComponent.vue')['default']
-    BaseCounter: typeof import('./src/components/BaseCounter/BaseCounter.vue')['default']
-    BaseDataTable: typeof import('./src/components/BaseDataTable/BaseDataTable.vue')['default']
-    BaseDivider: typeof import('./src/components/BaseDivider/BaseDivider.vue')['default']
-    BaseExpansiveCard: typeof import('./src/components/BaseCard/BaseExpansiveCard.vue')['default']
+    BaseCounter: typeof import('./src/components/base/BaseCounter/BaseCounter.vue')['default']
+    BaseDataTable: typeof import('./src/components/base/BaseDataTable/BaseDataTable.vue')['default']
+    BaseDivider: typeof import('./src/components/base/BaseDivider/BaseDivider.vue')['default']
+    BaseExpansiveCard: typeof import('./src/components/base/BaseCard/BaseExpansiveCard.vue')['default']
     BaseHeader: typeof import('./src/components/BaseHeader/BaseHeader.vue')['default']
-    BaseModal: typeof import('./src/components/BaseModal/BaseModal.vue')['default']
-    BaseTable: typeof import('./src/components/BaseTable/BaseTable.vue')['default']
+    BaseInput: typeof import('./src/components/base/BaseInput/BaseInput.vue')['default']
+    BaseModal: typeof import('./src/components/base/BaseModal/BaseModal.vue')['default']
+    BaseTable: typeof import('./src/components/base/BaseTable/BaseTable.vue')['default']
     Btn: typeof import('./src/components/buttons/Btn.vue')['default']
     ClientTable: typeof import('./src/components/ClientTable/ClientTable.vue')['default']
     ExpandTransition: typeof import('./src/components/ExpandTransition.vue')['default']

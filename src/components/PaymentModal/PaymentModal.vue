@@ -19,6 +19,15 @@
     </div>
 
     <footer class="modal-footer">
+      <div class="table-info">
+        <p>mesa 1</p>
+        <BaseInput
+          v-model="payment"
+          label="R$"
+          type="number"
+        />
+      </div>
+
       <div class="actions">
         <base-btn
           color="gray-dark"
@@ -32,6 +41,8 @@
   </base-modal>
 </template>
 <script lang="ts">
+import { ref } from 'vue'
+
 export default {
   setup(_, { emit }) {
     const ordersHeaders = [
@@ -47,6 +58,7 @@ export default {
       { text: 'valor', value: 'value', align: 'right' },
     ]
 
+    const payment = ref()
     const handleClose = () => {
       emit('close')
     }
@@ -55,6 +67,7 @@ export default {
       emit('close')
     }
     return {
+      payment,
       ordersHeaders,
       paymentsHeaders,
       handleClose,
@@ -68,7 +81,8 @@ export default {
   .content {
     background-color: var(--color-background);
     border-radius: 8px;
-    padding: 1rem;
+    padding: 1.25rem;
+    margin: 0.5rem;
   }
 
   .modal-footer {
