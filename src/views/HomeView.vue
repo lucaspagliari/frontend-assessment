@@ -8,6 +8,7 @@
         :data="table"
         @order="clientOpenModal('order', table.id)"
         @charge="clientOpenModal('payment', table.id)"
+        @clear="handleClear(table.id)"
       />
 
       <OrderModal
@@ -37,11 +38,16 @@ export default {
       store.selectTable(tableId)
     }
 
+    const handleClear = (tableId: number) => {
+      store.clearTable(tableId)
+    }
+
     return {
       clientOpenModal,
       tables: computed(() => store.tables),
       closeModal,
       isModalActive,
+      handleClear,
     }
   },
 }

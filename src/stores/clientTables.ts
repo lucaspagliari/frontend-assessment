@@ -3,7 +3,7 @@ import { computed, reactive, ref } from 'vue'
 import { usePayments, useProducts } from '@/composable'
 import type { Order, Payment, Table, TimedPayment, TimedProduct } from '@/types'
 
-const genTables2 = (n = 16): Record<any, Table> => {
+const genTables = (n = 16): Record<any, Table> => {
   const tables: Record<any, Table> = {}
 
   for (let id = 1; id < n + 1; id++) {
@@ -19,7 +19,7 @@ const genTables2 = (n = 16): Record<any, Table> => {
 }
 
 export const useClientTablesStore = defineStore('tables', () => {
-  const tables = reactive(genTables2())
+  const tables = reactive(genTables())
 
   const tableSelectedId = ref(1)
 
@@ -29,6 +29,12 @@ export const useClientTablesStore = defineStore('tables', () => {
 
   const selectTable = (id: number) => {
     tableSelectedId.value = id
+  }
+
+  const clearTable = (id: number) => {
+    const table = genTables(1)[1]
+    table.id = id
+    tables[id] = table
   }
 
   const addOrder = (order: Order) => {
@@ -80,9 +86,10 @@ export const useClientTablesStore = defineStore('tables', () => {
     tableSelectedId,
     getTableSelected,
     selectTable,
+    clearTable,
     addOrder,
-    getOrderItems,
     addPayment,
+    getOrderItems,
     getPaymentItems,
     getTotalRemaining,
   }

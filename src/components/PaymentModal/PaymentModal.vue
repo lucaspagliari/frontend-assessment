@@ -87,7 +87,7 @@ export default {
 
     const paymentsHeaders = [
       { text: 'Data', value: 'date' },
-      { text: 'valor', value: 'value', align: 'right' },
+      { text: 'valor', value: 'value', align: 'right', type: 'currency' },
     ]
 
     const store = useClientTablesStore()
