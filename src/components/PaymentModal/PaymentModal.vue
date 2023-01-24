@@ -10,10 +10,11 @@
     </template>
 
     <div class="content">
-      <base-data-table
+      <BaseDataTable
         :headers="ordersHeaders"
         :items="ordersItems"
-      ></base-data-table>
+        :is-mobile="isMobile"
+      />
 
       <template v-if="hasPayments">
         <BaseDivider />
@@ -26,10 +27,11 @@
         </div>
 
         <BaseDivider />
-        <base-data-table
+
+        <BaseDataTable
           :headers="paymentsHeaders"
           :items="paymentItems"
-        ></base-data-table>
+        />
       </template>
       <BaseDivider />
       <div class="total">
@@ -67,14 +69,13 @@
   </base-modal>
 </template>
 <script lang="ts">
+import { useBreakpoint } from '@/composable'
 import { useClientTablesStore } from '@/stores/clientTables'
 import { computed, ref } from 'vue'
 
 export default {
   setup(_, { emit }) {
-    const store = useClientTablesStore()
-
-    const table = computed(() => store.getTableSelected)
+    const isMobile = useBreakpoint().smaller('sm')
 
     const ordersHeaders = [
       { text: 'Pedido', value: 'name' },
@@ -83,15 +84,19 @@ export default {
       { text: 'UND', value: 'price', type: 'currency' },
       { text: 'valor', value: 'total', align: 'right', type: 'currency' },
     ]
-    const ordersItems = computed(() => store.getOrderItems)
 
     const paymentsHeaders = [
       { text: 'Data', value: 'date' },
       { text: 'valor', value: 'value', align: 'right' },
     ]
-    const paymentItems = computed(() => store.getPaymentItems)
-    const hasPayments = computed(() => !!paymentItems.value.length)
 
+    const store = useClientTablesStore()
+
+    const table = computed(() => store.getTableSelected)
+    const ordersItems = computed(() => store.getOrderItems)
+    const paymentItems = computed(() => store.getPaymentItems)
+
+    const hasPayments = computed(() => !!store.getPaymentItems.length)
     const totalRemaining = computed(() => store.getTotalRemaining)
 
     const payment = ref()
@@ -121,6 +126,7 @@ export default {
       payment.value = undefined
     }
     return {
+      isMobile,
       payment,
       paymentInvalid,
       disableBtn,
@@ -131,13 +137,15 @@ export default {
       paymentItems,
       handleClose,
       handlePayment,
-      table,
       totalRemaining,
+      table,
     }
   },
 }
 </script>
 <style lang="scss">
+@import '@/assets/stylesheets/mixins/breakpoints.scss';
+
 .payment-modal {
   .content {
     background-color: var(--color-background);
@@ -160,8 +168,14 @@ export default {
   .modal-footer {
     .table-info {
       display: flex;
-      justify-content: space-between;
       margin: 1rem 0;
+      justify-content: space-between;
+
+      @include breakpoint('extra-small') {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.25rem;
+      }
     }
     .actions {
       display: grid;

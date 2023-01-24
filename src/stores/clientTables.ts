@@ -18,21 +18,6 @@ const genTables2 = (n = 16): Record<any, Table> => {
   return tables
 }
 
-const genTables = (n = 16): Table[] => {
-  const tables: Table[] = []
-
-  for (let i = 0; i < n; i++) {
-    tables.push({
-      id: i + 1,
-      total: 0,
-      time: null,
-      orders: [],
-      payments: [],
-    })
-  }
-  return tables
-}
-
 export const useClientTablesStore = defineStore('tables', () => {
   const tables = reactive(genTables2())
 

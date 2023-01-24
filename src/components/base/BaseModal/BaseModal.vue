@@ -1,5 +1,4 @@
 <template>
-  <!-- TODO: Maybe add click outside -->
   <Transition name="fade">
     <div
       v-if="active"

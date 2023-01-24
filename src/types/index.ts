@@ -12,7 +12,6 @@ export interface ProductSummarized extends Product {
   quantity: number
 }
 
-// todo maybe remove this
 export interface TimedProduct extends Product {
   time: string | Date
 }
