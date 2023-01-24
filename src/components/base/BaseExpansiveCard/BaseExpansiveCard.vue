@@ -7,7 +7,7 @@
     >
       <slot name="default"></slot>
       <base-btn
-        :class="['toggle', { 'toggle-open': open }]"
+        :class="['btn-action', { rotate: open }]"
         icon
         color="transparent"
       >
@@ -51,9 +51,7 @@ export default {
 </script>
 <style scoped lang="scss">
 .base-card {
-  // padding: 0.5rem;
   border-radius: 0.5rem;
-  // background-color: var(--color-background);
 
   .title {
     display: flex;
@@ -63,11 +61,12 @@ export default {
     color: var(--color-blue);
   }
 
-  .toggle {
+  .btn-action {
     transition: transform 300ms;
-    &-open {
-      transform: rotate(180deg);
-    }
+  }
+
+  .rotate {
+    transform: rotate(180deg);
   }
 }
 </style>

@@ -1,15 +1,14 @@
 <template>
-  <!-- TODO: Add style when table is occupied or empty -->
   <div class="client-table">
     <base-table
       v-if="isEmpty"
-      class="info"
+      class="table"
     >
       <template #default> {{ name }} </template>
     </base-table>
     <base-table
       v-else
-      class="info"
+      class="table"
     >
       <template #top> {{ time }}</template>
       <template #default>
@@ -19,20 +18,20 @@
     </base-table>
 
     <base-btn
-      :class="['btn-clear', { 'btn-hidden': hideClearBtn }]"
+      :class="['action', 'clear', { hidden: hideClearBtn }]"
       icon
       color="yellow"
       @click="$emit('clear')"
       >🧼
     </base-btn>
     <base-btn
-      :class="['btn-charge', { 'btn-hidden': hideChargeBtn }]"
+      :class="['action', 'charge', { hidden: hideChargeBtn }]"
       icon
       @click="$emit('charge')"
       >💲
     </base-btn>
     <base-btn
-      class="btn-order"
+      class="action order"
       icon
       color="green"
       @click="$emit('order')"
@@ -100,53 +99,51 @@ export default {
   position: relative;
 
   &:hover {
-    .info {
+    .table {
       border: 2px solid var(--color-violet);
     }
-    .btn {
+    .action {
       visibility: visible;
       opacity: 1;
     }
   }
 
-  .btn {
+  .action {
     position: absolute;
     visibility: hidden;
     opacity: 0;
     transition: visibility 0s, all 120ms linear;
+  }
 
-    &-order {
-      bottom: 0.5rem;
-      left: 0.5rem;
-
-      @include breakpoint('small') {
-        bottom: -16px;
-        left: calc(50% - 16px);
-      }
+  .action.clear {
+    top: 0.5rem;
+    left: 0.5rem;
+    @include breakpoint('small') {
+      top: -16px;
+      left: calc(50% - 16px);
     }
+  }
 
-    &-charge {
-      bottom: 0.5rem;
-      right: 0.5rem;
-
-      @include breakpoint('small') {
-        bottom: calc(50% - 15px);
-        right: -16px;
-      }
+  .action.order {
+    bottom: 0.5rem;
+    left: 0.5rem;
+    @include breakpoint('small') {
+      bottom: -16px;
+      left: calc(50% - 16px);
     }
-    &-clear {
-      top: 0.5rem;
-      left: 0.5rem;
+  }
 
-      @include breakpoint('small') {
-        top: -16px;
-        left: calc(50% - 16px);
-      }
+  .action.charge {
+    bottom: 0.5rem;
+    right: 0.5rem;
+    @include breakpoint('small') {
+      bottom: calc(50% - 15px);
+      right: -16px;
     }
+  }
 
-    &-hidden {
-      display: none;
-    }
+  .action.hidden {
+    display: none;
   }
 }
 </style>

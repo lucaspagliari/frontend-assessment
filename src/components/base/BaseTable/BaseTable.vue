@@ -1,12 +1,12 @@
 <template>
   <div class="base-table">
-    <div class="small">
+    <div class="description">
       <slot name="top" />
     </div>
     <div class="title">
       <slot name="default" />
     </div>
-    <div class="small">
+    <div class="description">
       <slot name="bottom" />
     </div>
   </div>
@@ -33,16 +33,15 @@ export default {
   display: flex;
   width: 100%;
   height: 100%;
-
-  align-items: center;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
 
   font-size: 16px;
   border-radius: 1rem;
+  border: 2px solid var(--color-background-2);
   background-color: var(--color-background-2);
   box-shadow: var(--color-shadow);
-  border: 2px solid var(--color-background-2);
 
   transition: 100ms;
 
@@ -54,9 +53,10 @@ export default {
     height: 2rem;
     font-size: large;
   }
-  .small {
+
+  .description {
     display: inline;
-    height: 15px;
+    height: 1rem;
     font-size: small;
   }
 }

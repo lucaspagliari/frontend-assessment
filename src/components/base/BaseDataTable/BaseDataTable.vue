@@ -1,7 +1,7 @@
 <template>
   <table class="base-data-table w-full bg-white">
     <thead>
-      <tr class="row-header">
+      <tr class="header-row">
         <th
           v-for="header in mainHeaders"
           :key="header.value"
@@ -17,11 +17,11 @@
         v-for="item in items"
         :key="itemId(item) + 'mobile'"
       >
-        <tr class="row-body">
+        <tr class="body-row">
           <td
             v-for="header in mainHeaders"
             :key="header.value"
-            :class="textAlign(header)"
+            :class="['data', textAlign(header)]"
           >
             <template v-if="header.type === 'currency'">
               <BaseMoney :amount="itemValue(item, header)" />
@@ -43,13 +43,13 @@
         </tr>
 
         <tr
-          class="row-body-expansive"
+          class="expandable-row"
           v-if="isExpanded(itemId(item))"
         >
           <td :colspan="mainHeaders.length + 1">
             <div
               v-for="mHeader in remainingHeaders"
-              class="subitems"
+              class="mobile-data"
             >
               <h3>{{ mHeader.text }}:</h3>
               <p>{{ itemValue(item, mHeader) }}</p>
@@ -62,12 +62,12 @@
         v-else
         v-for="item in items"
         :key="itemId(item)"
-        class="row-body"
+        class="body-row"
       >
         <td
           v-for="header in mainHeaders"
           :key="header.value"
-          :class="textAlign(header)"
+          :class="['data', textAlign(header)]"
         >
           <template v-if="header.type === 'currency'">
             <BaseMoney :amount="itemValue(item, header)" />
@@ -164,39 +164,41 @@ export default {
 <style lang="scss" scoped>
 .base-data-table {
   width: 100%;
-
   font-size: medium;
 
-  .row {
-    height: 4rem;
+  .header-row {
     text-align: left;
+    text-transform: uppercase;
+  }
 
-    &-header {
-      text-transform: uppercase;
+  .body-row {
+    text-align: left;
+  }
+
+  .body-row > .data {
+    height: 2rem;
+    margin: auto;
+    vertical-align: middle;
+  }
+
+  .body-row > .action {
+    width: 2rem;
+
+    .btn-rotate {
+      transform: rotate(180deg);
+    }
+  }
+
+  .expandable-row {
+    border-bottom: 2px solid var(--color-background-2);
+
+    &:last-child {
+      border: none;
     }
 
-    &-body {
-      td {
-        height: 2rem;
-        margin: auto;
-        vertical-align: middle;
-      }
-
-      &-expansive {
-        border-bottom: 2px solid var(--color-background-2);
-        .subitems {
-          display: flex;
-          justify-content: space-between;
-        }
-      }
-
-      .action {
-        width: 2rem;
-
-        .btn-rotate {
-          transform: rotate(180deg);
-        }
-      }
+    .mobile-data {
+      display: flex;
+      justify-content: space-between;
     }
   }
 

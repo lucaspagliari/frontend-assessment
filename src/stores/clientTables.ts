@@ -3,7 +3,7 @@ import { computed, reactive, ref } from 'vue'
 import { usePayments, useProducts } from '@/composable'
 import type { Order, Payment, Table, TimedPayment, TimedProduct } from '@/types'
 
-const genTables = (n = 16): Record<any, Table> => {
+const genTables = (n = 12): Record<any, Table> => {
   const tables: Record<any, Table> = {}
 
   for (let id = 1; id < n + 1; id++) {

@@ -42,8 +42,8 @@
       </div>
     </div>
 
-    <footer class="modal-footer">
-      <div class="table-info">
+    <footer class="footer">
+      <div class="table">
         <p>Mesa {{ table.id }}</p>
         <BaseInput
           v-model="payment"
@@ -152,36 +152,33 @@ export default {
     border-radius: 8px;
     padding: 1.25rem;
     margin: 0.5rem;
+  }
 
-    .total {
-      display: flex;
+  .content > .total {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
+    font-size: medium;
+    text-transform: capitalize;
+  }
+
+  .footer > .table {
+    display: flex;
+    margin: 1rem 0;
+    justify-content: space-between;
+
+    @include breakpoint('extra-small') {
       flex-direction: column;
-      justify-content: center;
-      align-items: end;
-      font-size: medium;
-      .title {
-        text-transform: uppercase;
-      }
+      align-items: center;
+      gap: 0.25rem;
     }
   }
 
-  .modal-footer {
-    .table-info {
-      display: flex;
-      margin: 1rem 0;
-      justify-content: space-between;
-
-      @include breakpoint('extra-small') {
-        flex-direction: column;
-        align-items: center;
-        gap: 0.25rem;
-      }
-    }
-    .actions {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      justify-items: center;
-    }
+  .footer > .actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
   }
 }
 </style>

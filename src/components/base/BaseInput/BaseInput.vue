@@ -3,10 +3,12 @@
     <label
       v-if="label"
       :for="name"
+      class="fieldName"
     >
       {{ label }}
     </label>
     <input
+      class="field"
       :value="modelValue"
       :name="name"
       :type="type"
@@ -50,36 +52,34 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.base {
-  &-input {
-    font-size: medium;
+.base-input {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: medium;
 
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
+  .field {
+    width: 100%;
+    padding: 0.25rem;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    background-color: var(--color-background);
 
-    input {
-      width: 100%;
-      padding: 0.25rem;
-      border-radius: 4px;
-      background-color: var(--color-background);
-      border: 1px solid var(--color-border);
-      // Remove arrows inside input
-      &::-webkit-outer-spin-button,
-      &::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-      }
-      &[type='number'] {
-        -moz-appearance: textfield; /* Firefox */
-      }
+    // Remove arrows inside input
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
     }
+    &[type='number'] {
+      -moz-appearance: textfield; /* Firefox */
+    }
+  }
 
-    &-invalid {
-      input {
-        border-color: var(--color-pink);
-      }
-      color: var(--color-pink);
+  &-invalid {
+    color: var(--color-pink);
+    .field {
+      border-color: var(--color-pink);
     }
   }
 }

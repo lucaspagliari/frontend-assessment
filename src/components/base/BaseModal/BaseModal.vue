@@ -14,7 +14,7 @@
         <div class="title">
           <slot name="title"></slot>
           <base-btn
-            class="btn-close"
+            class="close"
             icon
             color="transparent"
             @click="$emit('close')"
@@ -65,15 +65,6 @@ export default {
   justify-content: center;
   background-color: #00000098;
 
-  .title {
-    display: grid;
-    grid-template-columns: 1fr min-content;
-
-    .btn-close {
-      grid-column: 2/ 3;
-    }
-  }
-
   .content {
     position: relative;
     height: auto;
@@ -82,6 +73,15 @@ export default {
     box-shadow: var(--color-shadow);
     background-color: var(--color-background-2);
     margin: 1rem;
+  }
+
+  .content > .title {
+    display: grid;
+    grid-template-columns: 1fr min-content;
+
+    .close {
+      grid-column: 2/ 3;
+    }
   }
 }
 

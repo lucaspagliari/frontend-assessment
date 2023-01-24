@@ -1,10 +1,10 @@
 <template>
   <div class="home-view">
-    <div class="content">
+    <div class="table-list">
       <ClientTable
         v-for="table in tables"
         :key="table.id"
-        class="client-table"
+        class="table-item"
         :data="table"
         @order="clientOpenModal('order', table.id)"
         @charge="clientOpenModal('payment', table.id)"
@@ -63,31 +63,30 @@ export default {
     height: 100%;
   }
 
-  .content {
+  .table-list {
     display: flex;
     flex-direction: column;
     gap: 1rem;
     padding: 1rem;
 
-    .client-table {
-      height: 100px;
-      @include breakpoint('small') {
-        height: 150px;
-      }
-    }
-
     @include breakpoint('small') {
       display: grid;
-      grid-template: repeat(3, 150px) / repeat(3, 150px);
+      grid-template: repeat(4, 140px) / repeat(3, 140px);
       gap: 1.75rem;
-      align-items: center;
       justify-content: center;
       align-self: center;
     }
 
     @include breakpoint('medium') {
-      grid-template: repeat(4, 150px) / repeat(4, 150px);
+      grid-template: repeat(3, 160px) / repeat(4, 160px);
       gap: 2rem;
+    }
+  }
+
+  .table-list > .table-item {
+    height: 100px;
+    @include breakpoint('small') {
+      height: auto;
     }
   }
 }

@@ -12,7 +12,7 @@
     <base-expansive-card
       v-for="(category, i) in categories"
       :key="category"
-      class="card"
+      class="product-list card"
       :color="colors[i]"
     >
       <template #default> {{ category }} </template>
@@ -20,7 +20,7 @@
         <div
           v-for="(product, index) in filterProduct(category)"
           :key="product.name + index"
-          class="product"
+          class="product-item product"
         >
           <p class="name">{{ product.name }}</p>
           <p class="price">
@@ -37,8 +37,8 @@
       </template>
     </base-expansive-card>
 
-    <footer class="modal-footer">
-      <div class="table-info">
+    <footer class="footer">
+      <div class="table">
         <p>Mesa {{ table }}</p>
         <p>
           <BaseMoney :amount="total" />
@@ -113,51 +113,53 @@ export default {
   max-height: 100vh;
   overflow-y: auto;
 
-  .card {
-    font-size: 1.125rem;
+  .product-list {
+    font-size: large;
     margin: 1rem 0;
+  }
 
-    .product {
-      display: grid;
-      padding: 0.25rem;
-      border-bottom: 1px dashed var(--color-border);
+  .product-item {
+    display: grid;
+    padding: 0.25rem;
+    border-bottom: 1px dashed var(--color-border);
 
-      grid-template: repeat(2, 1.25rem) / 2fr 1fr;
+    grid-template: repeat(2, 1.25rem) / 2fr 1fr;
+
+    @include breakpoint('small') {
+      grid-template: auto / 2fr 1fr 1fr;
+      padding: 0.5rem;
+    }
+  }
+
+  .product-item > .price {
+    text-align: left;
+    @include breakpoint('small') {
+      text-align: center;
+    }
+  }
+
+  .product-item > .quantity {
+    .quantity {
+      grid-area: 1 / 2 / 3 / 2;
+      margin: auto;
 
       @include breakpoint('small') {
-        grid-template: auto / 2fr 1fr 1fr;
-        padding: 0.5rem;
-      }
-
-      .quantity {
-        grid-area: 1 / 2 / 3 / 2;
-        margin: auto;
-
-        @include breakpoint('small') {
-          grid-area: 1 / 3 / 1 / 4;
-        }
-      }
-
-      .price {
-        text-align: left;
-        @include breakpoint('small') {
-          text-align: center;
-        }
+        grid-area: 1 / 3 / 1 / 4;
       }
     }
   }
 
-  .modal-footer {
-    .table-info {
-      display: flex;
-      justify-content: space-between;
-      margin: 1rem 0;
-    }
-    .actions {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      justify-items: center;
-    }
+  .footer > .table {
+    font-size: large;
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+  }
+
+  .footer > .actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
   }
 }
 </style>

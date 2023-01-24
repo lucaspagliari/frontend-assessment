@@ -1,18 +1,14 @@
 <template>
   <header class="main-header">
-    <h3 class="username">
-      Olá, <b> {{ username }} </b>
+    <h3 class="greetings">
+      Olá, <b class="username"> {{ username }} </b>
     </h3>
-
     <div class="time">
-      <p>
-        {{ date }}
-      </p>
-      <p>
-        {{ time }}
-      </p>
+      <p>{{ date }}</p>
+      <p>{{ time }}</p>
     </div>
-    <div class="btn-toggle">
+
+    <div class="action">
       <base-btn @click="toggle">
         {{ isDarkMode ? 'light' : 'dark' }}
       </base-btn>
@@ -69,52 +65,49 @@ export default {
 @import '@/assets/stylesheets/mixins/breakpoints.scss';
 
 .main-header {
-  z-index: 5;
   display: grid;
   height: 3rem;
-  // grid-template: auto / auto 30%;
-
   grid-template: auto / 30% auto 30%;
+  align-items: center;
+  gap: 1rem;
+  z-index: 5;
+
+  background-color: var(--color-background-2);
+  box-shadow: var(--color-shadow);
+  padding: 0 1rem;
+
   @include breakpoint('small') {
     padding: 0 3rem;
   }
 
-  align-items: center;
-
-  gap: 1rem;
-  padding: 0 1rem;
-  background-color: var(--color-background-2);
-  box-shadow: var(--color-shadow);
-
-  .username {
+  .greetings {
     display: inline;
     font-size: 16px;
 
     @include breakpoint('small') {
       font-size: 18px;
     }
+  }
 
-    b {
-      display: block;
-      color: var(--color-violet);
+  .greetings > .username {
+    display: block;
+    color: var(--color-violet);
 
-      @include breakpoint('small') {
-        display: inline;
-      }
+    @include breakpoint('small') {
+      display: inline;
     }
   }
 
   .time {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    font-size: small;
-    gap: 0.25rem;
     align-items: center;
     justify-content: center;
+    gap: 0.25rem;
+    font-size: small;
   }
 
-  .btn-toggle {
+  .action {
     display: flex;
     justify-content: end;
   }

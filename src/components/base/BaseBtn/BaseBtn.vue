@@ -68,15 +68,15 @@ export default {
   border-radius: 8px;
   font-size: 1rem;
   color: var(--color-white);
-
+  text-transform: capitalize;
   cursor: pointer;
 
-  text-transform: capitalize;
-
   transition: all 150ms linear;
+
   &:hover {
     filter: brightness(130%);
   }
+
   &-outlined {
     box-sizing: border-box;
     border: 2px solid;
@@ -84,6 +84,7 @@ export default {
 
   &-disabled {
     filter: opacity(70%) brightness(90%);
+
     &:hover {
       filter: opacity(70%) brightness(90%);
     }

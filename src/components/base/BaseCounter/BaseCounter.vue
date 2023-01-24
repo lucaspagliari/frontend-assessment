@@ -1,15 +1,15 @@
 <template>
   <div class="base-counter">
     <base-btn
-      class="btn"
+      class="action"
       icon
       :color="color"
       @click="handleBtnClick(-1)"
       >-</base-btn
     >
-    <div class="count">{{ count }}</div>
+    <div class="number">{{ count }}</div>
     <base-btn
-      class="btn"
+      class="action"
       icon
       :color="color"
       @click="handleBtnClick(+1)"
@@ -51,12 +51,13 @@ export default {
   display: flex;
   gap: 0.5rem;
 
-  .count {
+  .number {
     display: inline-block;
     width: 2rem;
     text-align: center;
   }
-  .btn {
+
+  .action {
     width: 24px;
     height: 24px;
   }
