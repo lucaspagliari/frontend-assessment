@@ -1,6 +1,8 @@
 <template>
   <header class="main-header">
-    <h3 class="username">Olá, {{ username }}!</h3>
+    <h3 class="username">
+      Olá, <b> {{ username }} </b>
+    </h3>
 
     <div class="time">
       <p>
@@ -74,10 +76,10 @@ export default {
   z-index: 5;
   display: grid;
   height: 3rem;
-  grid-template: auto / auto 30%;
+  // grid-template: auto / auto 30%;
 
+  grid-template: auto / 30% auto 30%;
   @include breakpoint('small') {
-    grid-template: auto / 30% auto 30%;
     padding: 0 3rem;
   }
 
@@ -89,25 +91,31 @@ export default {
   box-shadow: var(--color-shadow);
 
   .username {
-    display: none;
+    display: inline;
+    font-size: 16px;
 
     @include breakpoint('small') {
-      display: inline;
       font-size: 18px;
+    }
+
+    b {
+      display: block;
+      color: var(--color-violet);
+
+      @include breakpoint('small') {
+        display: inline;
+      }
     }
   }
 
   .time {
     display: flex;
     flex-direction: column;
-    align-items: start;
     justify-content: center;
     font-size: small;
-
-    @include breakpoint('small') {
-      align-items: center;
-      justify-content: center;
-    }
+    gap: 0.25rem;
+    align-items: center;
+    justify-content: center;
   }
 
   .btn-toggle {
