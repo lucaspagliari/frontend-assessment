@@ -19,13 +19,17 @@ export interface TimedProduct extends Product {
 
 export interface Order {
   total: number
-  time: string | Date
+  time: Date
   products: Product[]
 }
 
 export interface Payment {
-  time: string
-  date: string
+  date: Date
+  value: number
+}
+
+export interface TimedPayment {
+  date: string | Date
   value: number
 }
 

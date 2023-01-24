@@ -1,7 +1,8 @@
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref, type ComputedRef } from 'vue'
 
 interface useDarkModeReturn {
   toggle: () => void
+  isDarkMode: ComputedRef
 }
 
 export const useDarkMode = (): useDarkModeReturn => {
@@ -24,5 +25,6 @@ export const useDarkMode = (): useDarkModeReturn => {
 
   return {
     toggle,
+    isDarkMode: computed(() => isDarkMode.value === 1),
   }
 }

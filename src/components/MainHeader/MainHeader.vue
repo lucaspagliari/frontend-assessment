@@ -14,7 +14,7 @@
     </div>
     <div class="btn-toggle">
       <base-btn @click="toggle">
-        <p>dark</p>
+        {{ isDarkMode ? 'light' : 'dark' }}
       </base-btn>
     </div>
   </header>
@@ -25,7 +25,7 @@ import { onMounted, onUnmounted, ref } from 'vue'
 
 export default {
   setup() {
-    const { toggle } = useDarkMode()
+    const { toggle, isDarkMode } = useDarkMode()
 
     let interval: any
     onMounted(() => {
@@ -57,15 +57,11 @@ export default {
 
     return {
       username: 'John Doe',
-      toggle,
       date,
       time,
+      toggle,
+      isDarkMode,
     }
-  },
-  computed: {
-    dateAndTime() {
-      return new Date().toDateString()
-    },
   },
 }
 </script>

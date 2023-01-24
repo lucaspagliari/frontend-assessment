@@ -16,6 +16,7 @@ declare module '@vue/runtime-core' {
     BaseHeader: typeof import('./src/components/BaseHeader/BaseHeader.vue')['default']
     BaseInput: typeof import('./src/components/base/BaseInput/BaseInput.vue')['default']
     BaseModal: typeof import('./src/components/base/BaseModal/BaseModal.vue')['default']
+    BaseMoney: typeof import('./src/components/base/BaseMoney/BaseMoney.vue')['default']
     BaseTable: typeof import('./src/components/base/BaseTable/BaseTable.vue')['default']
     Btn: typeof import('./src/components/buttons/Btn.vue')['default']
     ClientTable: typeof import('./src/components/ClientTable/ClientTable.vue')['default']

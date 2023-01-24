@@ -20,9 +20,9 @@ global.document = {
   },
 }
 describe('useModal', () => {
-  it('should start on light mode', async () => {
+  it('should call classList.toggle() when toggle called', () => {
     const composable = useDarkMode()
-    await composable.toggle()
+    composable.toggle()
 
     expect(mockToggle).toHaveBeenCalledOnce()
     expect(mockToggle).toHaveBeenCalledWith('dark')

@@ -83,9 +83,9 @@ export default {
   }
 
   &-disabled {
-    filter: opacity(80%) brightness(90%);
+    filter: opacity(70%) brightness(90%);
     &:hover {
-      filter: opacity(80%) brightness(90%);
+      filter: opacity(70%) brightness(90%);
     }
   }
 

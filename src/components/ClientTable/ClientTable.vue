@@ -5,61 +5,90 @@
       v-if="isEmpty"
       class="info"
     >
-      <template #default> {{ tableName }} </template>
+      <template #default> {{ name }} </template>
     </base-table>
     <base-table
       v-else
       class="info"
     >
       <template #top> {{ time }}</template>
-      <template #default>{{ tableTotal }}</template>
-      <template #bottom> {{ tableName }}</template>
+      <template #default>
+        <BaseMoney :amount="totalRemaining" />
+      </template>
+      <template #bottom> {{ name }}</template>
     </base-table>
 
-    <!-- TODO: Add icon lib  -->
     <base-btn
-      class="btn-charge options"
+      :class="['btn-clear', { 'btn-hidden': hideClearBtn }]"
+      icon
+      color="yellow"
+      @click="$emit('clear')"
+      >🧼
+    </base-btn>
+    <base-btn
+      :class="['btn-charge', { 'btn-hidden': hideChargeBtn }]"
       icon
       @click="$emit('charge')"
-      >💲</base-btn
-    >
+      >💲
+    </base-btn>
     <base-btn
-      class="btn-order options"
+      class="btn-order"
       icon
       color="green"
       @click="$emit('order')"
-      >➕</base-btn
-    >
+      >➕
+    </base-btn>
   </div>
 </template>
 <script lang="ts">
+import { usePayments } from '@/composable'
+import { computed } from 'vue'
+
 export default {
   props: {
     data: {
       type: Object,
-      default: {
+      default: () => ({
         id: 0,
         total: 0,
-        products: [],
-      },
+        orders: [],
+        payments: [],
+      }),
     },
   },
-  computed: {
-    isEmpty() {
-      return !this.data.total
-    },
-    tableName() {
-      return `Mesa ${this.data.id}`
-    },
-    tableTotal() {
-      // TODO: Format to $$ (maybe use dinero.js)
-      return this.data.total
-    },
-    time() {
-      // TODO: Format to Date (maybe use a lib)
+
+  setup(props) {
+    const isEmpty = computed(() => !props.data.total)
+
+    const name = computed(() => `Mesa ${props.data.id}`)
+
+    const time = computed(() => {
       const date = new Date().toLocaleTimeString().split(':')
       return `${date[0]}:${date[1]}`
-    },
+    })
+
+    const { totalPaid } = usePayments()
+
+    const paid = computed(() => totalPaid(props.data.payments))
+
+    const totalRemaining = computed(() => props.data.total - paid.value)
+
+    const hideChargeBtn = computed(() => {
+      return props.data.total === 0
+    })
+    const hideClearBtn = computed(() => {
+      return props.data.total === 0 || totalRemaining.value !== 0
+    })
+
+    return {
+      isEmpty,
+      hideClearBtn,
+      hideChargeBtn,
+      name,
+      totalRemaining,
+      paid,
+      time,
+    }
   },
 }
 </script>
@@ -74,36 +103,49 @@ export default {
     .info {
       border: 2px solid var(--color-violet);
     }
-    .options {
+    .btn {
       visibility: visible;
       opacity: 1;
     }
   }
 
-  .options {
+  .btn {
     position: absolute;
     visibility: hidden;
     opacity: 0;
     transition: visibility 0s, all 120ms linear;
-  }
 
-  .btn-order {
-    bottom: 0.5rem;
-    left: 0.5rem;
+    &-order {
+      bottom: 0.5rem;
+      left: 0.5rem;
 
-    @include breakpoint('small') {
-      bottom: -16px;
-      left: calc(50% - 16px);
+      @include breakpoint('small') {
+        bottom: -16px;
+        left: calc(50% - 16px);
+      }
     }
-  }
 
-  .btn-charge {
-    bottom: 0.5rem;
-    right: 0.5rem;
+    &-charge {
+      bottom: 0.5rem;
+      right: 0.5rem;
 
-    @include breakpoint('small') {
-      bottom: calc(50% - 15px);
-      right: -16px;
+      @include breakpoint('small') {
+        bottom: calc(50% - 15px);
+        right: -16px;
+      }
+    }
+    &-clear {
+      top: 0.5rem;
+      left: 0.5rem;
+
+      @include breakpoint('small') {
+        top: -16px;
+        left: calc(50% - 16px);
+      }
+    }
+
+    &-hidden {
+      display: none;
     }
   }
 }

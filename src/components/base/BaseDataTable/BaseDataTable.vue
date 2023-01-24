@@ -22,7 +22,12 @@
           :key="header.value"
           :class="textAlign(header)"
         >
-          {{ itemValue(item, header) }}
+          <template v-if="header.type === 'currency'">
+            <BaseMoney :amount="itemValue(item, header)" />
+          </template>
+          <template v-else>
+            {{ itemValue(item, header) }}
+          </template>
         </td>
         <slot
           name="options"
@@ -37,7 +42,12 @@
 export default {
   props: {
     headers: {
-      type: Array<{ text: string; value: string; align: string }>,
+      type: Array<{
+        text: string
+        value: string
+        align: string
+        type?: string
+      }>,
       default: () => [{}],
     },
     items: {
@@ -59,21 +69,6 @@ export default {
       }
       return 'text-left'
     }
-    /* 
-    const genItem = (n: number) => {
-      const items = []
-      for (let i = 0; i < n; i++) {
-        items.push({
-          id: i,
-          quantity: (i % 3) + 1,
-          name: 'teste' + i,
-          time: new Date().toLocaleTimeString(),
-          total: i,
-          price: 'R$10,00',
-        })
-      }
-      return items
-    } */
 
     return {
       textAlign,

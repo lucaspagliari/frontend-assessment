@@ -23,7 +23,9 @@
           class="product"
         >
           <p class="name">{{ product.name }}</p>
-          <p class="price">{{ product.price }}</p>
+          <p class="price">
+            <BaseMoney :amount="product.price" />
+          </p>
           <div class="quantity">
             <BaseCounter
               @add="addProduct(product)"
@@ -38,7 +40,9 @@
     <footer class="modal-footer">
       <div class="table-info">
         <p>Mesa {{ table }}</p>
-        <p>{{ total }}</p>
+        <p>
+          <BaseMoney :amount="total" />
+        </p>
       </div>
       <div class="actions">
         <base-btn
