@@ -7,6 +7,7 @@ interface useDarkModeReturn {
 export const useDarkMode = (): useDarkModeReturn => {
   const isDarkMode = ref(0)
 
+  // TODO: maybe create a function to do this
   onMounted(() => {
     isDarkMode.value = Number(localStorage.getItem('darkMode'))
     if (isDarkMode.value) {

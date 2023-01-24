@@ -3,20 +3,18 @@ import { getProducts } from '@/services/products'
 import { useClientTablesStore } from '@/stores/clientTables'
 import type { Product } from '@/types'
 
-type ProductFn = (item: Product) => void
-
-interface useOrderProductsReturn {
+interface useOrderReturn {
   products: Product[]
   order: Product[]
   categories: string[]
   total: Ref<number>
-  addProduct: ProductFn
-  removeProduct: ProductFn
+  addProduct: (item: Product) => void
+  removeProduct: (item: Product) => void
   cancelOrder: () => void
   finishOrder: () => void
 }
 
-export const useOrderProducts = (): useOrderProductsReturn => {
+export const useOrder = (): useOrderReturn => {
   const products = getProducts()
   const categories = [...new Set(products.map(({ category }) => category))]
   const order = reactive<Product[]>([])

@@ -54,7 +54,7 @@
 </template>
 
 <script lang="ts">
-import { useOrderProducts } from '@/composable'
+import { useOrder } from '@/composable'
 import { useClientTablesStore } from '@/stores/clientTables'
 import { computed } from 'vue'
 
@@ -68,7 +68,7 @@ export default {
       removeProduct,
       cancelOrder,
       finishOrder,
-    } = useOrderProducts()
+    } = useOrder()
 
     const store = useClientTablesStore()
     const table = computed(() => store.tableSelectedId)
