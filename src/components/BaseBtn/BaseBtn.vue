@@ -1,13 +1,16 @@
 <template>
   <button
-    :class="['btn', { 'btn-icon': icon }, { 'btn-outlined': outlined }]"
+    :class="['btn', btnClasses]"
     :style="btnStyle"
+    :disabled="disabled"
   >
     <slot name="default" />
   </button>
 </template>
 
 <script lang="ts">
+import { computed } from 'vue'
+
 export default {
   props: {
     icon: {
@@ -15,6 +18,10 @@ export default {
       default: false,
     },
     outlined: {
+      type: Boolean,
+      default: false,
+    },
+    disabled: {
       type: Boolean,
       default: false,
     },
@@ -26,17 +33,28 @@ export default {
       },
     },
   },
+  setup(props) {
+    const btnStyle = computed(() => {
+      const { color, outlined } = props
+      const cssColor = `var(--color-${color})`
 
-  computed: {
-    btnStyle() {
-      const color = `var(--color-${this.color})`
-
-      const style = !this.outlined
-        ? { backgroundColor: color }
-        : { borderColor: color, color }
+      const style = !outlined
+        ? { backgroundColor: cssColor }
+        : { borderColor: cssColor, color: cssColor }
 
       return style
-    },
+    })
+
+    const btnClasses = computed(() => ({
+      'btn-icon': props.icon,
+      'btn-outlined': props.outlined,
+      'btn-disabled': props.disabled,
+    }))
+
+    return {
+      btnStyle,
+      btnClasses,
+    }
   },
 }
 </script>
@@ -63,7 +81,14 @@ export default {
     box-sizing: border-box;
     border: 2px solid;
   }
-  // TODO: Maybe add a conditional to define color based on background color
+
+  &-disabled {
+    filter: opacity(80%) brightness(90%);
+    &:hover {
+      filter: opacity(80%) brightness(90%);
+    }
+  }
+
   &-icon {
     width: 32px;
     height: 32px;

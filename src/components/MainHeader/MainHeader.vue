@@ -1,26 +1,63 @@
 <template>
   <header class="main-header">
-    <!-- <h3>Olá, {{ username }}!</h3> -->
-    <div class="base-header--time">
+    <h3 class="username">Olá, {{ username }}!</h3>
+
+    <div class="time">
       <p>
-        <!-- {{ dateAndTime }} -->
+        {{ date }}
+      </p>
+      <p>
+        {{ time }}
       </p>
     </div>
-
-    <base-btn @click="toggle">
-      <p>dark</p>
-    </base-btn>
+    <div class="btn-toggle">
+      <base-btn @click="toggle">
+        <p>dark</p>
+      </base-btn>
+    </div>
   </header>
 </template>
 <script lang="ts">
 import { useDarkMode } from '@/composable'
+import { onMounted, onUnmounted, ref } from 'vue'
 
 export default {
   setup() {
     const { toggle } = useDarkMode()
+
+    let interval: any
+    onMounted(() => {
+      updateDates()
+      interval = setInterval(() => {
+        updateDates()
+      }, 1000 * 30)
+    })
+    onUnmounted(() => {
+      clearInterval(interval)
+    })
+
+    const date = ref('')
+    const time = ref('')
+    const weekDays = [
+      'Domingo',
+      'Segunda-Feira',
+      'Terça-Feira',
+      'Quarta-Feira',
+      'Quinta-Feira',
+      'Sexta-Feira',
+      'Sábado',
+    ]
+    const updateDates = () => {
+      const now = new Date()
+      date.value = weekDays[now.getDay()]
+      time.value = now.toLocaleTimeString().substring(0, 5)
+    }
+
     return {
       username: 'John Doe',
       toggle,
+      date,
+      time,
     }
   },
   computed: {
@@ -31,22 +68,51 @@ export default {
 }
 </script>
 <style scoped lang="scss">
+@import '@/assets/stylesheets/mixins/breakpoints.scss';
+
 .main-header {
   z-index: 5;
   display: grid;
   height: 3rem;
-  grid-template: auto / 30% auto 30%;
+  grid-template: auto / auto 30%;
+
+  @include breakpoint('small') {
+    grid-template: auto / 30% auto 30%;
+    padding: 0 3rem;
+  }
 
   align-items: center;
-  padding: 0 5rem;
+
   gap: 1rem;
+  padding: 0 1rem;
   background-color: var(--color-background-2);
   box-shadow: var(--color-shadow);
 
-  &--time {
+  .username {
+    display: none;
+
+    @include breakpoint('small') {
+      display: inline;
+      font-size: 18px;
+    }
+  }
+
+  .time {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: start;
     justify-content: center;
+    font-size: small;
+
+    @include breakpoint('small') {
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .btn-toggle {
+    display: flex;
+    justify-content: end;
   }
 }
 </style>
