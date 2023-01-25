@@ -11,7 +11,7 @@
         icon
         color="transparent"
       >
-        ⬇️
+        ➕
       </base-btn>
     </div>
     <div v-show="open">
@@ -26,7 +26,7 @@ export default {
   props: {
     color: {
       type: String,
-      default: 'blue',
+      default: 'violet',
     },
   },
   setup(props) {
@@ -66,7 +66,7 @@ export default {
   }
 
   .rotate {
-    transform: rotate(180deg);
+    transform: rotate(45deg);
   }
 }
 </style>

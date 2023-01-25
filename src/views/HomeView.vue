@@ -12,11 +12,11 @@
       />
 
       <OrderModal
-        :active="isModalActive('order')"
+        v-if="isModalActive('order')"
         @close="closeModal"
       />
       <PaymentModal
-        :active="isModalActive('payment')"
+        v-if="isModalActive('payment')"
         @close="closeModal"
       />
     </div>

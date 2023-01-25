@@ -1,7 +1,6 @@
 <template>
   <Transition name="fade">
     <div
-      v-show="active"
       tabindex="-1"
       aria-hidden="true"
       class="base-modal"
@@ -29,10 +28,6 @@
 <script lang="ts">
 export default {
   props: {
-    active: {
-      type: Boolean,
-      default: false,
-    },
     width: {
       type: Number,
     },
