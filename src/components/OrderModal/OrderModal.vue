@@ -59,7 +59,7 @@
 
 <script lang="ts">
 import { useOrder } from '@/composable'
-import { useClientTablesStore } from '@/stores/clientTables'
+import { useClientTablesStore } from '@/stores'
 import { computed } from 'vue'
 
 export default {

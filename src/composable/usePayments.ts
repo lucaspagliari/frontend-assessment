@@ -1,9 +1,14 @@
 import type { Payment } from '@/types'
 
-interface usePaymentsReturn {}
+type PaymentFn<T> = (payments: Payment[]) => T
 
-export const usePayments = () => {
-  const hasPayments = (payments: Payment[]) => payments.length
+interface usePaymentsReturn {
+  hasPayments: PaymentFn<boolean>
+  totalPaid: PaymentFn<number>
+}
+
+export const usePayments = (): usePaymentsReturn => {
+  const hasPayments = (payments: Payment[]) => !!payments.length
 
   const totalPaid = (payments: Payment[]) => {
     return hasPayments(payments) ? payments.reduce((a, b) => a + b.value, 0) : 0

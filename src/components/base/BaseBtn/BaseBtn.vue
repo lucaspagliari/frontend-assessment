@@ -3,6 +3,7 @@
     :class="['btn', btnClasses]"
     :style="btnStyle"
     :disabled="disabled"
+    data-testid="base-btn"
   >
     <slot name="default" />
   </button>

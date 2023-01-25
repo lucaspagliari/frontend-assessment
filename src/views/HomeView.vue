@@ -24,7 +24,7 @@
 </template>
 <script lang="ts">
 import { useModal } from '@/composable'
-import { useClientTablesStore } from '@/stores/clientTables'
+import { useClientTablesStore } from '@/stores'
 import { computed } from 'vue'
 
 export default {

@@ -1,6 +1,6 @@
 import { ref, reactive, type ReactiveEffect, type Ref, onUnmounted } from 'vue'
 import { getProducts } from '@/services/products'
-import { useClientTablesStore } from '@/stores/clientTables'
+import { useClientTablesStore } from '@/stores'
 import type { Product } from '@/types'
 
 interface useOrderReturn {

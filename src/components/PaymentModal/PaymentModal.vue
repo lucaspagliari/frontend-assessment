@@ -70,7 +70,7 @@
 </template>
 <script lang="ts">
 import { useBreakpoint } from '@/composable'
-import { useClientTablesStore } from '@/stores/clientTables'
+import { useClientTablesStore } from '@/stores'
 import { computed, ref } from 'vue'
 
 export default {

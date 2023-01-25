@@ -39,6 +39,7 @@ export const useClientTablesStore = defineStore('tables', () => {
 
   const addOrder = (order: Order) => {
     const { summarize } = useProducts()
+
     order.products = summarize(order.products, 'id')
     const table = tables[tableSelectedId.value]
     table.total += order.total
