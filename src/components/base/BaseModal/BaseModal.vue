@@ -1,7 +1,7 @@
 <template>
   <Transition name="fade">
     <div
-      v-if="active"
+      v-show="active"
       tabindex="-1"
       aria-hidden="true"
       class="base-modal"

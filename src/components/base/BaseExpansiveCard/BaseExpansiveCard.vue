@@ -14,7 +14,7 @@
         ⬇️
       </base-btn>
     </div>
-    <div v-if="open">
+    <div v-show="open">
       <slot name="content"></slot>
     </div>
   </div>

@@ -4,16 +4,17 @@
     :width="500"
     :minWidth="300"
     @close="handleClose"
+    data-testid="order-modal"
   >
     <template #title>
       <h2>Novo Pedido</h2>
     </template>
 
     <base-expansive-card
-      v-for="(category, i) in categories"
+      v-for="category in categories"
       :key="category"
-      class="product-list card"
-      :color="colors[i]"
+      class="product-list"
+      data-testid="product-list"
     >
       <template #default> {{ category }} </template>
       <template #content>
@@ -21,6 +22,7 @@
           v-for="(product, index) in filterProduct(category)"
           :key="product.name + index"
           class="product-item product"
+          data-testid="product-item"
         >
           <p class="name">{{ product.name }}</p>
           <p class="price">
@@ -30,7 +32,6 @@
             <BaseCounter
               @add="addProduct(product)"
               @subtract="removeProduct(product)"
-              :color="colors[i]"
             />
           </div>
         </div>
@@ -40,7 +41,7 @@
     <footer class="footer">
       <div class="table">
         <p>Mesa {{ table }}</p>
-        <p>
+        <p data-testid="order-modal-total">
           <BaseMoney :amount="total" />
         </p>
       </div>
@@ -49,9 +50,14 @@
           color="gray-dark"
           outlined
           @click="handleClose"
+          data-testid="action-close"
           >cancelar
         </base-btn>
-        <base-btn @click="handleFinish">finalizar</base-btn>
+        <base-btn
+          @click="handleFinish"
+          data-testid="action-finish"
+          >finalizar</base-btn
+        >
       </div>
     </footer>
   </base-modal>
@@ -90,12 +96,9 @@ export default {
       return products.filter((e) => e.category === category)
     }
 
-    const colors = ['violet', 'violet', 'violet', 'violet']
-
     return {
       total,
       categories,
-      colors,
       table,
       filterProduct,
       addProduct,

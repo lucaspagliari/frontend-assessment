@@ -1,18 +1,28 @@
 <template>
-  <div class="base-counter">
+  <div
+    class="base-counter"
+    data-testid="base-counter"
+  >
     <base-btn
       class="action"
       icon
       :color="color"
       @click="handleBtnClick(-1)"
+      data-testid="base-counter-subtract"
       >-</base-btn
     >
-    <div class="number">{{ count }}</div>
+    <div
+      class="number"
+      data-testid="base-counter-number"
+    >
+      {{ count }}
+    </div>
     <base-btn
       class="action"
       icon
       :color="color"
       @click="handleBtnClick(+1)"
+      data-testid="base-counter-add"
       >+</base-btn
     >
   </div>
