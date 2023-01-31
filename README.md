@@ -1,4 +1,33 @@
-# Teste para pessoa desenvolvedora frontend senior - Convenia
+# Notas
+
+Deploy no link: [senior-frontend-assessment](https://senior-frontend-assessment.vercel.app/)
+
+### Localmente
+
+```
+npm install
+
+yarn
+```
+
+```
+npm run dev
+
+yarn dev
+```
+
+## Stack
+- Vue 3 (usando sintaxe similar ao Vue 2.7)
+- Typescript
+- SCSS
+- Pinia
+- Vite
+- Vitest
+- Testing Library
+- Faker.js
+
+------
+## Teste para pessoa desenvolvedora frontend senior - Convenia
 
 A divisão de contas em restaurantes costuma ser trabalhosa para o garçom, e tem o potencial de gerar confusões.
 O seu objetivo é criar um webapp para facilitar a vida desse garçom.
